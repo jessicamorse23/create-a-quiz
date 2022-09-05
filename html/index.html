@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css"
 </head>
 <body>
-    <div class="scores"><a href=""highscores.html">High Score Sheet</a></div>
+    <div class="scores"><a href="highscores.html">High Score Sheet</a></div>
 
     <div class="timer">Time: <span id=time>0</span></div>
 
@@ -21,10 +21,33 @@
             <button id="start">Start Quiz</button>
         </div>
         <div id="codeQuestions" class="hidden">
+            <h2 id="quest-number">Questions</h2>
+        </div>
+        <!-- <div id="codeQuestions" class="hidden">
         <h2 id="question-title"></h2>
-        <div id="choices" class="choices"><button id="a"><h3>a</h3></button><button id="b"><h3>b</h3></button> <button id="c"><h3>c</h3></button></div>
+        <div id="choices" class="choices"><button id="a"><h3>a</h3></button><button id="b"><h3>b</h3></button> <button id="c"><h3>c</h3></button></div> -->
     </div>
 
+    <div class="quiz-box">
+        <header>
+            <div class="title">JavaScript Quiz</div>
+        </header>
+   
+<section>
+    <div class="code-quiz-questions">
+        <!-- insert question from JavaScript -->
+    </div>
+    <div class="question-option-list">
+        <!-- insert option from JavaScript -->
+    </div>
+</section>
+<footer>
+    <div class="total-questions">
+        <!-- insert question count number from JavaScript here -->
+    </div>
+    <button class="next-button">Next Question</button>
+</footer>
+</div>
     <div id="end-screen" class="hidden">
     <h2>Finished!</h2>
     <p>Final Score: <span id="final-score"></span></p>

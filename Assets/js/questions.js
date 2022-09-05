@@ -1,31 +1,25 @@
-export default codeQuestions = [
+let codeQuizQuestions = [
   {
+    questNumber: 1,
     question:
       "Which built-n method combines the text of two strings and returns a new string?",
-    answers: {
-      a: "append()",
-      b: "concat()",
-      c: "attach()",
-    },
-    correctAnswer: "b",
+    answer: "concat()",
+    options: ["append()", "concat()", "attach()"],
   },
+
+  ,
   {
+    questNumber: 2,
     question:
       "Which JavaScript label catches all the values, except for the ones specified?",
-    answers: {
-      a: "catch",
-      b: "label",
-      c: "default",
-    },
-    correctAnswer: "c",
+    answer: "default",
+    options: ["catch", "label", "default"],
   },
+
   {
+    questNumber: 3,
     question: "What will the following code return? Boolean(2<8)",
-    answers: {
-      a: "true",
-      b: "false",
-      c: "NaN",
-    },
-    correctAnswer: "a",
+    answer: "true",
+    options: ["true", "false", "NaN"],
   },
 ];
