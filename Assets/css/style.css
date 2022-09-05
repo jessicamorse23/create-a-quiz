@@ -1,3 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .hidden {
 display: none;
+}
+
+#a {
+    text-emphasis-style: bold;
+    padding: 10px;
+    background-color: aquamarine;
+    color: navy;
+}
+
+#b {
+    text-emphasis-style: bold;
+    padding: 10px;
+    background-color: aquamarine;
+    color: navy;
+}
+
+#c {
+    text-emphasis-style: bold;
+    padding: 10px;
+    background-color: aquamarine;
+    color: navy;
 }
