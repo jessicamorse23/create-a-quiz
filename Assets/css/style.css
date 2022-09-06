@@ -1,192 +1,65 @@
 * {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    padding: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 body {
+    background-color: rgba(118, 118, 221, 0.617);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    font-weight: bold;
+    background-color: aquamarine;
+    padding: 5px;
+    color: navy;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: navy;
+    padding: 10px;
+}
+
+.container {
+    width: 80vw;
+    max-width: 80%;
     background-color: aliceblue;
-}
-
-.hidden {
-    display: none;
-    }
-
-/* ::selection {
-    color: navy;
-    background-color: aquamarine;
-}
-
-.quiz-box{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -%50);
+    height: 70vh;
     box-shadow: 5px;
-    width: 550px;
-    background: #fff;
-    border-radius: 5px;
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.quiz_box header{
-    position: relative;
-    z-index: 2;
-    height: 70px;
-    padding: 0 30px;
-    background: #fff;
-    border-radius: 5px 5px 0 0;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
-}
-
-#start {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -%50);
-    box-shadow: 5px;
-    color: #007bff;
-    padding: 15px 30px;
-    cursor: pointer;
-}
-
-
-/* #a {
-    text-emphasis-style: bold;
-    padding: 10px;
-    background-color: aquamarine;
-    color: navy;
-}
-
-#b {
-    text-emphasis-style: bold;
-    padding: 10px;
-    background-color: aquamarine;
-    color: navy;
-}
-
-#c {
-    text-emphasis-style: bold;
-    padding: 10px;
-    background-color: aquamarine;
-    color: navy;
-} */ 
-
-section{
-    padding: 25px 30px 20px 30px;
-    background: #fff;
-}
-section .que_text{
-    font-size: 25px;
-    font-weight: 600;
-}
-section .option_list{
-    padding: 20px 0px;
-    display: block;   
-}
-section .option_list .option{
-    background: aliceblue;
-    border: 1px solid #84c5fe;
-    border-radius: 5px;
-    padding: 8px 15px;
-    font-size: 17px;
-    margin-bottom: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-section .option_list .option:last-child{
-    margin-bottom: 0px;
-}
-section .option_list .option:hover{
-    color: #004085;
-    background: #cce5ff;
-    border: 1px solid #b8daff;
-}
-section .option_list .option.correct{
-    color: #155724;
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-}
-section .option_list .option.incorrect{
-    color: #721c24;
-    background: #f8d7da;
-    border: 1px solid #f5c6cb;
-}
-section .option_list .option.disabled{
-    pointer-events: none;
-}
-section .option_list .option .icon{
-    height: 26px;
-    width: 26px;
-    border: 2px solid transparent;
-    border-radius: 50%;
     text-align: center;
-    font-size: 13px;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    line-height: 24px;
 }
-.option_list .option .icon.tick{
-    color: #23903c;
-    border-color: #23903c;
-    background: #d4edda;
-}
-.option_list .option .icon.cross{
-    color: #a42834;
-    background: #f8d7da;
-    border-color: #a42834;
-}
-footer{
-    height: 60px;
-    padding: 0 30px;
+
+.content {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid lightgrey;
+    flex-direction: column;
 }
-footer .total_que span{
+
+.controls {
+    padding: 5px;
+    order: 4;
+}
+
+.options {
+    padding: 5px;
+    order: 3;
+}
+
+.wrapper {
     display: flex;
-    user-select: none;
-}
-footer .total_que span p{
-    font-weight: 500;
-    padding: 0 5px;
-}
-footer .total_que span p:first-child{
-    padding-left: 0px;
-}
-footer button{
-    height: 40px;
-    padding: 0 13px;
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    color: #fff;
-    border-radius: 5px;
-    background: #007bff;
-    border: 1px solid #007bff;
-    line-height: 10px;
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
-    transition: all 0.3s ease;
-}
-footer button:hover{
-    background: #0263ca;
-}
-footer button.show{
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

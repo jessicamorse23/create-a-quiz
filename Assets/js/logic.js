@@ -38,51 +38,116 @@
 //     },
 //   ];
 
-var secondsLeft = 120
-var questionNumber = 0
-
-const button = document.getElementById("start")
-const time = document.getElementById("time")
-const questionTitle =document.getElementById("question-title")
-const questionsBlock =document.getElementById("codeQuestions")
-console.log(button)
-console.log(time)
-console.log(questionTitle)
-console.log(questionsBlock)
 
 
-// button.addEventListener("click", () => {
-//     alert("Quiz Started")
-//     questionsBlock.classList.remove("hidden")
-//     createNextQuestion()
-//     setInterval(function () {
-//         console.log(secondsLeft)
-//         time.innerText=secondsLeft
-//         secondsLeft--
-//     }, 1000)
-//   })
+var secondsLeft = 120;
+var questionNumber = 0;
 
-// function createNextQuestion() {
-//     var question = codeQuestions[questionNumber]
-//     var title = question.question
-//     questionTitle.innerText = title
+const button = document.getElementById("start");
+const time = document.getElementById("time");
+const questionTitle = document.getElementById("question-title");
+const questionsBlock = document.getElementById("codeQuestions");
+const quizBox = document.getElementById("quiz-box");
+console.log(button);
+console.log(time);
+console.log(questionTitle);
+console.log(questionsBlock);
+console.log(quizBox);
 
-// }
+button.addEventListener("click", () => {
+  alert("Quiz Started");
+  questionsBlock.classList.remove("hidden");
+  createNextQuestion();
+  setInterval(function () {
+    console.log(secondsLeft);
+    time.innerText = secondsLeft;
+    secondsLeft--;
+  }, 1000);
+});
 
-function showQuestions (index) {
-    const codeQuizQuestions =document.querySelector(".code-quiz-questions");
+let timeValue = 15;
+let questionCount = 0;
+let questionNum = 1;
+let userScore = 0;
+let counter;
+let counterLine;
 
-let questionTag = '<span>' + questions[index].numb + ". " + questions[index].question +'</span>';
-let optionTag = '<div class="option"><span>' + questions[index].options[0] +'</span></div>'
-+ '<div class="option"><span>' + questions[index].options[1] + '</span></div>'
-+ '<div class="option"><span>' + questions[index].options[2] + '</span></div>'
-+ '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
-codeQuizQuestions.innerHTML = questionTag;
-questionOptionList.innerHTML = optionTag;
+const nextButton = document.getElementById("next-button");
+const nextQuestCount = document.getElementById("next-question-counter");
 
-const option = optionTag.querySelectorAll(".option");
+nextButton.addEventListener("click", () {
+    
+  if (questionCount < questions.length - 1) {
+    questionCount++;
+    questionNum++;
+    showQuestions(questionCount);
+    questionCounter(questionNum);
+    nextButton.classList.remove("show");
+  } else {
+    showResult();
+  }
+});
 
-for (i=0; i < option.legnth; i++) {
+function createNextQuestion() {
+    var question = codeQuestions[questionNumber]
+    var title = question.question
+    questionTitle.innerText = title
+
+}
+
+function showQuestions(index) {
+  const codeQuizQuestions = document.getElementById("code-quiz-questions");
+
+  let questionTag =
+    "<span>" +
+    questions[index].numb +
+    ". " +
+    questions[index].question +
+    "</span>";
+  let optionTag =
+    '<div class="option"><span>' +
+    questions[index].options[0] +
+    "</span></div>" +
+    '<div class="option"><span>' +
+    questions[index].options[1] +
+    "</span></div>" +
+    '<div class="option"><span>' +
+    questions[index].options[2] +
+    "</span></div>" +
+    '<div class="option"><span>' +
+    questions[index].options[3] +
+    "</span></div>";
+  codeQuizQuestions.innerHTML = questionTag;
+  questionOptionList.innerHTML = optionTag;
+
+  const option = optionTag.getElementById("option");
+
+  for (i = 0; i < option.legnth; i++) {
     option[i].setAttribute("onclick", "optionSelected(this)");
+  }
+}
+
+function optionSelected(answer) {
+clearInterval(counter);
+clearInterval(counterLine);
+let userAnswer = answer.textContent;
+let correctAnswer = questions[questionCount].answer;
+const allOptions = option_list.children.legnth;
+
+if(userAns == correctAnswer) {
+    userScore += 1;
+    answer.classList.add("correct");
+}else{
+    answer.classList.add("incorrect");
+
+for(i=0; i < allOptions; i++) {
+    if(option_list.children[i].textContent ==correctAnswer);
 }
 }
+}
+
+function questionCounter(index) {
+    let totalQuestionCountTag = '<span><p>' + index +'</p> of <p>' + questions.length + '</p> Questions</span>';
+    nextQuestionCounter.innerHTML = totalQuestionCountTag;
+}
+
