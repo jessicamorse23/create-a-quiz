@@ -1,153 +1,146 @@
-// HTML page with quiz start button
-// timer to start quiz*
-// first quiz question appears
-// option to answer the question
-// if correct, another quiz question appears
-// if incorrect, time is subtracted from timer
-// when time runs out - or all questions are answered - game is over
-// high scores page with option to save initials are score displays
-//  const codeQuestions = [
-//     {
-//       question:
-//         "Which built-n method combines the text of two strings and returns a new string?",
-//       answers: {
-//         a: "append()",
-//         b: "concat()",
-//         c: "attach()",
-//       },
-//       correctAnswer: "b",
-//     },
-//     {
-//       question:
-//         "Which JavaScript label catches all the values, except for the ones specified?",
-//       answers: {
-//         a: "catch",
-//         b: "label",
-//         c: "default",
-//       },
-//       correctAnswer: "c",
-//     },
-//     {
-//       question: "What will the following code return? Boolean(2<8)",
-//       answers: {
-//         a: "true",
-//         b: "false",
-//         c: "NaN",
-//       },
-//       correctAnswer: "a",
-//     },
-//   ];
+const restartButton = document.getElementById("restart");
+const aButton = document.getElementById("a");
+const bButton = document.getElementById("b");
+const cButton = document.getElementById("c");
+const questionText = document.getElementById("question-text");
+const startButton = document.getElementById("start");
+const questionsBlock = document.getElementById("question-area");
+const userScore = document.getElementById("user-score");
+const submitInitials = document.getElementById("submit-initials");
+const initials = document.getElementById("initials");
+const submitButton = document.getElementById("submit");
+const scores = "high scores";
+const highScoreString = localStorage.getItem("high scores");
+const highScores = JSON.parse(highScoreString) ?? [];
+// const lowestScore = highScores[NO_OF_HIGH_SCORES — 1]?.score ?? 0;
 
-
-
+let currentQuestion = 0;
+var score = 0;
 var secondsLeft = 120;
-var questionNumber = 0;
 
-const button = document.getElementById("start");
-const time = document.getElementById("time");
-const questionTitle = document.getElementById("question-title");
-const questionsBlock = document.getElementById("codeQuestions");
-const quizBox = document.getElementById("quiz-box");
-console.log(button);
-console.log(time);
-console.log(questionTitle);
-console.log(questionsBlock);
-console.log(quizBox);
+let questions = [
+  {
+    question:
+      "Which built-n method combines the text of two strings and returns a new string?",
+    answers: {
+      a: "append()",
+      b: "concat()",
+      c: "attach()",
+    },
+    correctAnswer: "b",
+    answer: "concat()",
+    options: ["append()", "concat()", "attach()"],
+  },
 
-button.addEventListener("click", () => {
-  alert("Quiz Started");
+  {
+    questNumber: 2,
+    question:
+      "Which JavaScript label catches all the values, except for the ones specified?",
+    answers: {
+      a: "catch",
+      b: "label",
+      c: "default",
+    },
+    correctAnswer: "c",
+    answer: "default",
+    options: ["catch", "label", "default"],
+  },
+
+  {
+    questNumber: 3,
+    question: "What will the following code return? Boolean(2<8)",
+    answers: {
+      a: "true",
+      b: "false",
+      c: "NaN",
+    },
+    correctAnswer: "a",
+    answer: "true",
+    options: ["true", "false", "NaN"],
+  },
+];
+
+restartButton.addEventListener("click", restart);
+
+function createQuestion() {
+  questionText.innerHTML = questions[currentQuestion].question;
+  aButton.innerHTML = questions[currentQuestion].answers.a;
+  aButton.onclick = () => {
+    if (questions[currentQuestion].correctAnswer === "a") {
+      if (score < 3) {
+        score++;
+      }
+    }
+    userScore.innerHTML = score;
+
+    next();
+  };
+  bButton.innerHTML = questions[currentQuestion].answers.b;
+  bButton.onclick = () => {
+    if (questions[currentQuestion].correctAnswer === "b") {
+      if (score < 3) {
+        score++;
+      }
+    }
+    userScore.innerHTML = score;
+
+    next();
+  };
+  cButton.innerHTML = questions[currentQuestion].answers.c;
+  cButton.onclick = () => {
+    if (questions[currentQuestion].correctAnswer === "c") {
+      if (score < 1) {
+        score++;
+      }
+    }
+    userScore.innerHTML = score;
+
+    next();
+  };
+}
+
+startButton.addEventListener("click", () => {
+  // alert("Quiz Started");
+  startButton.classList.remove("hidden");
   questionsBlock.classList.remove("hidden");
-  createNextQuestion();
+  createQuestion();
+  // createNextQuestion();
   setInterval(function () {
-    console.log(secondsLeft);
+    // console.log(secondsLeft);
     time.innerText = secondsLeft;
     secondsLeft--;
   }, 1000);
 });
+function restart() {
+  currentQuestion = 0;
+  aButton.classList.remove("hide");
+  bButton.classList.remove("hide");
+  cButton.classList.remove("hide");
+  score = 0;
+  userScore.innerHTML = score;
+  secondsLeft = 120;
+  createQuestion();
+}
 
-let timeValue = 15;
-let questionCount = 0;
-let questionNum = 1;
-let userScore = 0;
-let counter;
-let counterLine;
-
-const nextButton = document.getElementById("next-button");
-const nextQuestCount = document.getElementById("next-question-counter");
-
-nextButton.addEventListener("click", () {
-    
-  if (questionCount < questions.length - 1) {
-    questionCount++;
-    questionNum++;
-    showQuestions(questionCount);
-    questionCounter(questionNum);
-    nextButton.classList.remove("show");
+function next() {
+  currentQuestion++;
+  if (currentQuestion > 2) {
+    endQuiz();
   } else {
-    showResult();
-  }
-});
-
-function createNextQuestion() {
-    var question = codeQuestions[questionNumber]
-    var title = question.question
-    questionTitle.innerText = title
-
-}
-
-function showQuestions(index) {
-  const codeQuizQuestions = document.getElementById("code-quiz-questions");
-
-  let questionTag =
-    "<span>" +
-    questions[index].numb +
-    ". " +
-    questions[index].question +
-    "</span>";
-  let optionTag =
-    '<div class="option"><span>' +
-    questions[index].options[0] +
-    "</span></div>" +
-    '<div class="option"><span>' +
-    questions[index].options[1] +
-    "</span></div>" +
-    '<div class="option"><span>' +
-    questions[index].options[2] +
-    "</span></div>" +
-    '<div class="option"><span>' +
-    questions[index].options[3] +
-    "</span></div>";
-  codeQuizQuestions.innerHTML = questionTag;
-  questionOptionList.innerHTML = optionTag;
-
-  const option = optionTag.getElementById("option");
-
-  for (i = 0; i < option.legnth; i++) {
-    option[i].setAttribute("onclick", "optionSelected(this)");
+    createQuestion();
   }
 }
 
-function optionSelected(answer) {
-clearInterval(counter);
-clearInterval(counterLine);
-let userAnswer = answer.textContent;
-let correctAnswer = questions[questionCount].answer;
-const allOptions = option_list.children.legnth;
+function endQuiz(score) {
+  alert("Quiz Ended!");
 
-if(userAns == correctAnswer) {
-    userScore += 1;
-    answer.classList.add("correct");
-}else{
-    answer.classList.add("incorrect");
-
-for(i=0; i < allOptions; i++) {
-    if(option_list.children[i].textContent ==correctAnswer);
-}
-}
+  questionsBlock.classList.add("hidden");
+  submitInitials.classList.remove("hidden");
 }
 
-function questionCounter(index) {
-    let totalQuestionCountTag = '<span><p>' + index +'</p> of <p>' + questions.length + '</p> Questions</span>';
-    nextQuestionCounter.innerHTML = totalQuestionCountTag;
-}
+submitButton.addEventListener("click", () => {
+var input = initials.value
+console.log(input)
+  // window.location.href="../html/highscores.html"
+})
 

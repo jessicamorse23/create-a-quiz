@@ -15,7 +15,7 @@ body {
 
 .btn {
     font-weight: bold;
-    background-color: aquamarine;
+    background-color: rgb(200, 251, 234);
     padding: 5px;
     color: navy;
     margin: 5px;
@@ -32,7 +32,8 @@ body {
     max-width: 80%;
     background-color: aliceblue;
     height: 70vh;
-    box-shadow: 5px;
+    box-shadow: 8px 8px navy;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,12 +53,13 @@ body {
     order: 4;
 }
 
+.hidden {
+    display: none;
+}
+
 .options {
     padding: 5px;
     order: 3;
-}
-.hidden {
-    display: none;
 }
 
 .wrapper {
@@ -65,4 +67,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+#question-text {
+    font-weight: bolder;
 }
