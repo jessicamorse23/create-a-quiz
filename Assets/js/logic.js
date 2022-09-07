@@ -4,6 +4,7 @@ const bButton = document.getElementById("b");
 const cButton = document.getElementById("c");
 const questionText = document.getElementById("question-text");
 const startButton = document.getElementById("start");
+const startScreen = document.getElementById("start-screen")
 const questionsBlock = document.getElementById("question-area");
 const userScore = document.getElementById("user-score");
 const submitInitials = document.getElementById("submit-initials");
@@ -21,7 +22,7 @@ var secondsLeft = 120;
 let questions = [
   {
     question:
-      "Which built-n method combines the text of two strings and returns a new string?",
+      "Which built-in method combines the text of two strings and returns a new string?",
     answers: {
       a: "append()",
       b: "concat()",
@@ -77,8 +78,8 @@ function createQuestion() {
   };
   bButton.innerHTML = questions[currentQuestion].answers.b;
   bButton.onclick = () => {
-    if (questions[currentQuestion].correctAnswer === "b") {
-      if (score < 3) {
+    if (questions[currentQuestion].correctAnswer === "c") {
+      if (score < 1) {
         score++;
       }
     }
@@ -88,8 +89,8 @@ function createQuestion() {
   };
   cButton.innerHTML = questions[currentQuestion].answers.c;
   cButton.onclick = () => {
-    if (questions[currentQuestion].correctAnswer === "c") {
-      if (score < 1) {
+    if (questions[currentQuestion].correctAnswer === "a") {
+      if (score < 3) {
         score++;
       }
     }
@@ -121,6 +122,14 @@ function restart() {
   secondsLeft = 120;
   createQuestion();
 }
+
+// function startScreen() {
+//   if (startScreen.style.display === "none") {
+//     startScreen.style.display = "block"
+//   } else {
+//     startScreen.style.display = "none";
+//   }
+// }
 
 function next() {
   currentQuestion++;
